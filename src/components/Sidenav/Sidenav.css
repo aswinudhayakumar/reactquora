@@ -1,0 +1,9 @@
+.specific-menu{
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.specific-menu:hover{
+    background: #ffe8f0;
+    transition: 0.3s ease-in-out;
+}

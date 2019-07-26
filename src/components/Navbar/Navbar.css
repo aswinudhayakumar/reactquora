@@ -1,0 +1,19 @@
+.nav-bg{
+    background: white;
+}
+.name{
+    margin-top: 2%;
+}
+.user{
+    margin-bottom: 0px;
+    padding: 10px;
+}
+.active:hover{
+    background: #deeeff;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+.dpmenu{
+    position: absolute;
+    right: 400px;
+}
