@@ -1,70 +1,115 @@
 .box{
-    padding: 10px;
+    padding: 16px;
     background: white;
-    border: 1px solid whitesmoke;
+    border: 1px solid rgb(224, 224, 224);
     border-radius: 3px;
-    margin: 10px;
-    margin-left: 0px;
+    font-family: 'Varela Round', sans-serif;
+    margin-bottom: 8px;
 }
 .title{
-    margin-left: 3%;
+    margin-left: 0px;
+}
+p{
+    margin: 0px;
 }
 #answer-cat{
     color: silver;
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 0px;
     padding-left: 0px;
     text-align: left;
 }
-.close{
+.closepost{
     padding: 0px;
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     font-size: 15px;
+    color: gray;
 }
-.close:hover{
-    border:1px solid silver;
-    border-radius: 50%;
+.closepost:hover{
+    color: black;
+    cursor: pointer;
+}
+.cur{
+    cursor: pointer;
 }
 .author{
-    margin-top: 1%;
-    margin-left: 3%;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    margin-left: 0px;
 }
+
+@media only screen and (max-width: 600px) {
+    .auth-img{
+        padding: 0px;
+        text-align: left;
+        padding-right: 0px;
+        margin-left: 8px;
+        height: 20px;
+        width: 20px;
+    }
+    .auth-img-ind{
+        margin-left: 0px;
+        margin-top: 4%;
+        border-radius: 50%;
+        padding: 0px;
+        height: 20px;
+        width: 20px;
+    }
+    .auth-img-cmt{
+        margin-top: -0.5%;
+        border-radius: 50%;
+        height: 20px;
+        padding: 0px;
+        width: 20px;
+    }
+}
+
 .auth-img{
     padding-left: 0px;
     text-align: left;
     padding-right: 0px;
+    margin-left: 8px;
 }
 .auth-img-ind{
-    border:1px solid gray;
+    margin-left: 0px;
+    margin-top: 4%;
     border-radius: 50%;
-    padding: 5px;
+}
+.auth-img-cmt{
+    margin-top: -0.5%;
+    border-radius: 50%;
 }
 .authname{
     text-align: left;
     padding-left: 0px;
 }
 .image{
-    margin-top: 2%;
-    margin-left: 3%;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 8px;
     height: 40%;
     width: 95%;
 }
 .post{
     max-width: 100%;
     max-height: 100%;
+    border-radius: 3px;
 }
 .description{
-    margin-top: 4%;
-    margin-left: 3%;
+    margin-top: 0px;
+    margin-left: 0px;
     text-align: left;
-    margin-right: 3%;
+    margin-right: 0px;
+}
+h4{
+    margin-bottom: 0px;
 }
 .actions{
-    margin-top: 4%;
-    margin-left: 3%;
+    margin-top: 8px;
+    margin-left: 0px;
     text-align: left;
-    margin-bottom: 3%;
+    margin-bottom: 0px;
 }
 .like{
     max-width: 100%;
@@ -81,4 +126,70 @@
     margin-left: 3%;
     text-align: left;
     font-size: 15px;
+}
+.time{
+    font-size: 10px;
+    margin-bottom: 0px;
+}
+.cbtn{
+    margin-top: 0.5%;
+}
+.cuname{
+    margin-bottom: 0px;
+    text-align: left;
+    margin-left: 3%;
+}
+.cmt{
+    margin-bottom: 0px;
+    text-align: left;
+    margin-left: 10.5%;
+    margin-top: 5px;
+}
+.dcmt{
+    margin-top: 0%;
+}
+.delcmt{
+
+}
+.card{
+    background: #fafafa;
+    margin-top: 8px;
+    font-size: 14px;
+}
+.rec{
+    margin-top: 6px;
+    margin-left: 8px;
+    transition: 0.3s ease-in-out;
+}
+.custin{
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 40px;
+    border:1px solid gray;
+}
+input:focus{
+   outline: 0px;
+}
+.cbtn{
+    transition: 0.1s ease-in-out;
+}
+.type{
+    padding: 0px;
+    margin-left: 12px;
+}
+.ptitle{
+    font-weight: bold;
+    font-size: 18px;
+}
+.rotsvg{
+    transform: rotate(180deg);
+}
+.read{
+    color: rgb(16, 61, 185);
+    cursor: pointer;
+}
+.read:hover{
+    text-decoration: underline;
 }

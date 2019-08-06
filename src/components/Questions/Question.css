@@ -1,0 +1,60 @@
+.ind-question-box{
+    text-align: left;
+    background: white;
+    border: 1px solid rgb(241, 241, 241);
+    padding: 16px;
+}
+.ind-question{
+    margin: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.ind-question:hover{
+    text-decoration: underline
+}
+.question-cat{
+    color: gray;
+    margin: 0px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.question-link {
+    color: gray;
+    margin: 0px;
+    font-size: 13px;
+    margin-top: 4px;
+}
+.question-link:hover{
+    text-decoration: underline
+}
+.noofanswers{
+    margin-top: 4px;
+    padding-top:4px;
+    font-size: 13px;
+}
+.clickforanswer{
+    font-size: 14px;
+    color: gray;
+    padding: 0px;
+    cursor: pointer;
+    margin: none;
+}
+.clickforpass{
+    font-size: 14px;
+    color: gray;
+    padding: 0px;
+}
+.link{
+    color: gray;
+}
+.answer-card{
+    width: 100%;
+}
+.collapse{
+    text-align: left;
+}
+.sameuser{
+    font-size: 13px;
+    color: gray;
+}

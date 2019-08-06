@@ -1,3 +1,41 @@
 .side{
-    margin-top : 4%;
+    margin-top : 1%;
+    padding: 0px;
+}
+.selected{
+    text-align: left;
+    margin-left: 4%;
+    margin-bottom: 10px;
+}
+.main{
+margin-top: 2%;
+}
+.hnav{
+    margin-left: 19%;
+}
+@media only screen and (max-width: 1025px) {
+    .hnav{
+        margin-left: 5%;
+    }
+    .side{
+        margin-top : 1%;
+        padding: 0px;
+        margin-left: 2%;
+    }
+  }
+@media only screen and (max-width: 600px) {
+    .hnav{
+        margin-left: 0px;
+    }
+    .side{
+        margin-top : 1%;
+        padding: 0px;
+        margin-left: 0%;
+    }
+    .main{
+        padding: 0px;
+    }
+  }
+.maincont{
+    padding: 0px;
 }

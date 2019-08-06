@@ -1,0 +1,28 @@
+.main-box{
+   text-align: left;
+   background: #f4f7fa;
+   margin-top: 3%;
+    padding: 2%;
+}
+.signup-box{
+    margin-top: 4%;
+}
+.sign-image{
+    height: 80%;
+    width: 100%;
+}
+.gsign{
+    height: 42px;
+}
+.signbtn{
+    height: 42px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 3%;
+    padding-right: 3%;
+    box-shadow: 0 4px 3px -3px rgb(121, 120, 120);
+    transition: 0.3s ease-in-out;
+}
+.error{
+    color: red;
+}
