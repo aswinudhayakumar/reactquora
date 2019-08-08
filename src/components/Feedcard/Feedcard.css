@@ -36,6 +36,7 @@ p{
 .author{
     margin-bottom: 8px;
     margin-top: 8px;
+    font-family: 'q_serif',Georgia,Times,"Times New Roman","Hiragino Kaku Gothic Pro","Meiryo",serif;
     margin-left: 0px;
 }
 
@@ -131,7 +132,7 @@ h4{
     font-size: 10px;
     margin-bottom: 0px;
 }
-.cbtn{
+.cbtn-card{
     margin-top: 0.5%;
 }
 .cuname{
@@ -172,7 +173,7 @@ h4{
 input:focus{
    outline: 0px;
 }
-.cbtn{
+.cbtn-card{
     transition: 0.1s ease-in-out;
 }
 .type{
@@ -181,6 +182,7 @@ input:focus{
 }
 .ptitle{
     font-weight: bold;
+    font-family: 'q_serif',Georgia,Times,"Times New Roman","Hiragino Kaku Gothic Pro","Meiryo",serif;
     font-size: 18px;
 }
 .rotsvg{
@@ -192,4 +194,7 @@ input:focus{
 }
 .read:hover{
     text-decoration: underline;
+}
+.del{
+    text-align: right;
 }

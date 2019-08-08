@@ -17,7 +17,7 @@ class Answer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Questions: null,
+            Questions: [],
         }
     }
 
@@ -47,7 +47,7 @@ class Answer extends Component {
                             </div>
                             <div className="col-md-7 main col-sm-8 col-xs-12">
                                 {
-                                    this.state.Questions !== null
+                                    this.state.Questions.length > 0
                                         ?
                                         <div>
 
@@ -60,7 +60,7 @@ class Answer extends Component {
                                             })}
                                         </div>
                                         :
-                                        ''
+                                        <p>No Questions posted yet</p>
                                 }
 
                             </div>

@@ -6,6 +6,7 @@ import people from '../../images/people.png'
 import settings from '../../images/setting.png'
 import user from '../../images/user.png'
 import noti from '../../images/notification.png'
+import notion from '../../images/notification-on.png'
 import search from '../../images/search.png'
 import pen from '../../images/write-letter.png'
 import profile from '../../images/profiles.png'
@@ -45,7 +46,9 @@ class Navbar extends Component {
             resetTranscript: this.props.resetTranscript,
             notification: [],
             redirect : false,
+            showdot : false,
         }
+
 
     }
 
@@ -85,6 +88,11 @@ class Navbar extends Component {
 
     }
 
+    componentDidMount(){
+        setInterval(
+            this.getnotification, 25000);
+    }
+
 
     // componentDidUpdate() {
     //     if (this.props.auth.Feed !== "Feed") {
@@ -112,17 +120,43 @@ class Navbar extends Component {
 
     }
 
+    triggernotification = () => {
+        this.getnotification()
+        this.notificationread()
+    }
+
     getnotification = () => {
+        console.log("Founf")
         var link = "http://localhost:8123/getnotification"
         var obj = {
             Postuserid: this.props.auth.Id
         }
         Axios.post(link, obj).then(res => {
             if (res.data !== []) {
+                console.log(res.data)
                 this.setState({
                     notification: res.data
                 })
+                res.data.map((data, i)=>{
+                    if(data.Read === 1){
+                        this.setState({
+                            showdot : true
+                        })
+                    }
+                })
             }
+        })
+    }
+
+    notificationread = () => {
+        var link = "http://localhost:8123/notificaionread"
+        var obj = {
+            Postuserid : this.props.auth.Id
+        }
+        Axios.post(link, obj).then(res => {
+            this.setState({
+                showdot : false
+            })
         })
     }
 
@@ -144,6 +178,7 @@ class Navbar extends Component {
 
     render() {
 
+        console.log(this.state.notification.length)
         if(this.state.redirect === true){
             return (<Redirect to={{
                 pathname: "/profile",
@@ -151,8 +186,6 @@ class Navbar extends Component {
             )
         }
 
-
-        console.log(this.state.trans)
         if (!this.state.browserSupportsSpeechRecognition) {
             return null
         }
@@ -201,11 +234,11 @@ class Navbar extends Component {
                                     </a>
                                 </li>
 
-                                <li class="nav-item notify-link active" onClick={this.getnotification} data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <li class="nav-item notify-link active" onClick={this.triggernotification} data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <a class="nav-link" >
                                         <div className="row">
-                                            <div className="col-md-1"><img className="home-img" alt="one" src={noti} width="20px" height="20px" /></div>
-                                            <div className="col-md-8 links" ><p className="navtitles">Notifications</p></div>
+                                            <div className="col-md-1"><img className="home-img" alt="one" src={ this.state.showdot === false ? noti : notion} width="20px" height="20px" /></div>
+                                            <div className="col-md-9 links" ><p className="navtitles">Notifications</p></div>
                                         </div>
                                     </a>
                                 </li>
@@ -264,10 +297,10 @@ class Navbar extends Component {
                                         <div className="col-1 pic">
                                             <img className="post-img" src={data.Image !== '' ? data.Image  : user} width="18px" height="18px" />
                                         </div>
-                                        <div className="col-8 msg">
+                                        <div className="col-10 msg">
                                             <p className="">{data.Name} {data.Message} your post</p>
                                         </div>
-                                        <div className="col-2 delnoti" onClick = {(e)=>{this.deletenotification(data.ID)}}>
+                                        <div className="col-1 delnoti" onClick = {(e)=>{this.deletenotification(data.ID)}}>
                                            x
                                         </div>
                                     </div>

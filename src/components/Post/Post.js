@@ -44,7 +44,17 @@ class Post extends Component {
             startListening : this.props.startListening,
             stopListening : this.props.stopListening,
             browserSupportsSpeechRecognition : this.props.browserSupportsSpeechRecognition,
-            resetTranscript : this.props.resetTranscript 
+            resetTranscript : this.props.resetTranscript,
+            cat : {
+                cook : false,
+                photo : false,
+                science : false,
+                lit : false,
+                health : false,
+                music : false,
+                design : false,
+                movies : false,
+            }
         }
     }
 
@@ -96,7 +106,7 @@ class Post extends Component {
             var hrs = d.getHours()
             var mins = d.getMinutes()
             var ap = "AM"
-            if (hrs > 12) {
+            if (hrs >= 12) {
                 hrs = hrs % 12
                 ap = "PM"
             }
@@ -165,7 +175,10 @@ class Post extends Component {
 
         if (this.state.error.question === false && this.state.error.question === false) {
 
-
+            var c = this.state.category
+            if (this.state.category === ''){
+                c = "Others"
+            }
 
             var obj = {
                 Name: this.props.auth.Name,
@@ -174,12 +187,12 @@ class Post extends Component {
                 Link: this.state.Link,
                 Profile : this.props.auth.Image,
                 Userimage: this.props.auth.Profilepic,
-                Category: this.state.questioncat,
+                Category: c,
             }
 
             var link = "http://localhost:8123/newquestion"
             Axios.post(link,obj).then(res => {
-                alert("Question added successfully !")
+                window.location.replace("http://localhost:3000/answer")
             })
         }
 
@@ -307,58 +320,148 @@ class Post extends Component {
             var lit_count = c;
 
             console.log( cook_count, photo_count, science_count )
-
-            if( cook_count > photo_count && cook_count > science_count && cook_count > health_count && cook_count >music_count && cook_count >movies_count && cook_count > design_count && cook_count > lit_count ){
+            var cat = this.state.cat
+            if( cook_count > 0){
                 console.log("Cook")
-                this.setState({
-                    questioncat : "Cooking"
-                })
+                if( this.state.cat.cook === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.cook = true
+                    this.setState({
+                        questioncat : "Cooking",
+                        cat
+                    })
+                }else if( this.state.cat.cook === false ){
+                    cat.cook = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Cooking",
+                        cat
+                    })
+                }
             }
-            else if( photo_count > cook_count && photo_count > science_count && photo_count > health_count && photo_count >music_count && photo_count >movies_count && photo_count > design_count && photo_count > lit_count ){
+            else if( photo_count > 0 ){
                 console.log("Photo")
-                this.setState({
-                    questioncat : "Photography"
-                })
+
+                if(this.state.cat.photo === false && (this.state.questioncat === '' || this.state.questioncat === 'Others' )){
+                    cat.photo = true
+                    this.setState({
+                        questioncat : "Photography",
+                        cat
+                    })
+                }else if( this.state.cat.photo === false ){
+                    cat.photo = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Photography",
+                        cat
+                    })
+                }
             }
-            else if( science_count > cook_count && science_count > photo_count && science_count > health_count && science_count >music_count && science_count >movies_count && science_count > design_count && science_count > lit_count ){
+            else if( science_count > 0 ){
                 console.log("Science")
-                this.setState({
-                    questioncat : "Science"
-                })
+                if(this.state.cat.science === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.science = true
+                    this.setState({
+                        questioncat : "Science",
+                        cat
+                    })
+                }else if( this.state.cat.science === false ){
+                    cat.science = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Science",
+                        cat
+                    })
+                }
             }
-            else if( health_count > cook_count && health_count > photo_count && health_count > science_count && health_count >music_count && health_count >movies_count && health_count > design_count && health_count > lit_count ){
+            else if( health_count > 0){
                 console.log("Health")
-                this.setState({
-                    questioncat : "Health"
-                })
+                if(this.state.cat.health === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.health = true
+                    this.setState({
+                        questioncat : "Health",
+                        cat
+                    })
+                }else if( this.state.cat.health === false ){
+                    cat.health = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Health",
+                        cat
+                    })
+                }
             }
-            else if( music_count > cook_count && music_count > photo_count && music_count > science_count && music_count >health_count && music_count >movies_count && music_count > design_count && music_count > lit_count ){
+            else if( music_count > 0 ){
                 console.log("Music")
-                this.setState({
-                    questioncat : "Music"
-                })
+                if(this.state.cat.music === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.music = true
+                    this.setState({
+                        questioncat : "Music",
+                        cat
+                    })
+                }else if( this.state.cat.music === false ){
+                    cat.music = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Music",
+                        cat
+                    })
+                }
             }
-            else if( movies_count > cook_count && movies_count > photo_count && movies_count > health_count && movies_count >music_count && movies_count > science_count && movies_count > design_count && movies_count > lit_count ){
+            else if( movies_count > 0 ){
+                if(this.state.cat.music === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.movies = true
+                    this.setState({
+                        questioncat : "Movies",
+                        cat
+                    })
+                }else if( this.state.cat.movies === false ){
+                    cat.movies = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Movies",
+                        cat
+                    })
+                }
                 console.log("Movies")
-                this.setState({
-                    questioncat : "Movies"
-                })
             }
-            else if( design_count > cook_count && design_count > photo_count && design_count > health_count && design_count >music_count && design_count >movies_count && design_count > science_count && design_count > lit_count ){
+            else if( design_count > 0 ){
+                if(this.state.cat.music === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.music = true
+                    this.setState({
+                        questioncat : "Design",
+                        cat
+                    })
+                }else if( this.state.cat.music === false ){
+                    cat.music = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Design",
+                        cat
+                    })
+                }
                 console.log("Design")
-                this.setState({
-                    questioncat : "Design"
-                })
             }
-            else if( lit_count > cook_count && lit_count > design_count  && lit_count > health_count && lit_count >music_count && lit_count >movies_count && lit_count > design_count && lit_count > science_count ){
+            else if( lit_count > 0 ){
+                if(this.state.cat.lit === false && (this.state.questioncat === '' || this.state.questioncat === 'Others') ){
+                    cat.lit = true
+                    this.setState({
+                        questioncat : "Literatue",
+                        cat
+                    })
+                }else if( this.state.cat.lit === false ){
+                    cat.lit = true
+                    this.setState({
+                        questioncat : this.state.questioncat + ", Literatue",
+                        cat
+                    })
+                }
                 console.log("Lit")
-                this.setState({
-                    questioncat : "Literatue"
-                })
             }
             else{
+                cat.science = false
+                cat.photo = false
+                cat.cook = false
+                cat.lit = false
+                cat.health = false
+                cat.music = false
+                cat.movies = false
+                cat.design = false
                 this.setState({
-                    questioncat : "Others"
+                    questioncat : "Others",
+                    cat
                 })
             }
         }
@@ -450,14 +553,14 @@ class Post extends Component {
                                             </svg></span> Double-check grammar and spelling</li>
                                         </ul>
                                     </div>
-                                    <div className="uname"> <img className="post-img" src={user} width="40px" height="40px" />  {this.props.auth.Name} asked  </div>
+                                    <div className="uname"> <img className="post-img" src={ this.props.auth.Profilepic === '' ? user : this.props.auth.Profilepic} width="40px" height="40px" />  {this.props.auth.Name} asked  </div>
                                     <form onSubmit={this.askquestion}>
-                                        <input type="text" name="question" onChange={this.formhandle} value={this.state.question} className="question" placeholder="Start your questions from 'What','How','Why' etc., " />
+                                        <input type="text" autocomplete="off" name="question" onChange={this.formhandle} value={this.state.question} className="question" placeholder="Start your questions from 'What','How','Why' etc., " />
                                         
                                         <div className="mic">
                                             <span onClick={this.start}><img src={mic} height="25px" width="25px" /></span>
                                         </div>
-                                        <p className="questioncat">Category : {this.state.questioncat}</p>
+                                        <p className="questioncat">Category :  <input type="text" name="questioncat" className="ques-cat" value={this.state.questioncat} onChange={this.formhandle} /></p>
                                         {this.state.error.question === true ? <p className="error1">Question should not be empty and should not exceed 45 characters</p> : ''}
                                         <hr />
                                         <div><input className="question2" name="link" onChange={this.formhandle} value={this.state.link} placeholder="Optional : you can also add respective link here" /></div>
@@ -492,7 +595,7 @@ class Post extends Component {
                                                 <option name="title" value="Health" className="form-control">Health</option>
                                                 <option name="title" value="Cooking" className="form-control">Cooking</option>
                                                 <option name="title" value="Music" className="form-control">Music</option>
-                                                <option name="title" value="Sports" className="form-control">Sports</option>
+                                                <option name="title" value="Design" className="form-control">Design</option>
                                                 <option name="title" value="Movies" className="form-control">Movies</option>
                                             </select>
                                             {this.state.error.category === true ? <p className="error">Category should not be left out empty</p> : ''}

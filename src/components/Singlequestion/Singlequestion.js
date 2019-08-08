@@ -19,8 +19,63 @@ class Singlequestion extends Component {
             nooofanswers : this.props.location.state.nooofanswers,
             link : this.props.location.state.link,
             image : this.props.location.state.image,
+            noofanswers : 0,
             text : '',
+            error: {
+                text: false,
+            },
             answers : []
+        }
+    }
+
+    submit = () => {
+        var error = this.state.error
+        if (this.state.text === '') {
+            error.text = true
+            this.setState({
+                error
+            })
+        }
+        else {
+            error.text = false
+            this.setState({
+                error
+            })
+        }
+
+        if (this.state.error.text === false) {
+            var obj = {
+                Userid: this.props.auth.Id,
+                Questionid: this.state.questionid,
+                Name: this.props.auth.Name,
+                Answer: this.state.text,
+                Profile: this.props.auth.Profilepic
+
+            }
+            var link = "http://localhost:8123/addanswer"
+            Axios.post(link, obj).then(res => {
+                alert("Answered successfully")
+
+                var obj = {
+                    Id: this.state.questionid
+                }
+                var link = "http://localhost:8123/getsinglequestion"
+                Axios.post(link, obj).then(res => {
+                    console.log("asnwer ", res.data.Answers)
+                    this.setState({
+                        noofanswers: res.data.Answers,
+                    })
+                    link = "http://localhost:8123/getanswers"
+                    obj = {
+                        ID : this.state.questionid
+                    }
+                    Axios.post(link, obj).then(res => {
+                        this.setState({
+                            answers : res.data
+                        })
+                    })
+                })
+            })
         }
     }
 

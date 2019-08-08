@@ -153,6 +153,7 @@ ul{
 }
 .mic{
     margin-bottom: 8px;
+    cursor: pointer;
 }
 @media only screen and (max-width: 1000px) {
     .modal-dialog{
@@ -173,4 +174,11 @@ ul{
         max-width: 100px;
         height: 100px;
     }
+}
+.ques-cat{
+    border: 0px;
+}
+.ques-cat:hover, .ques-cat:focus{
+    outline: none;
+    border: 0px;
 }

@@ -20,8 +20,8 @@ class Profile extends Component {
             old : '',
             new : '',
             pchange : false,
-            post : null,
-            question : null,
+            post : [],
+            question : [],
             verify : false,
             posts : 0,
             questions : 0,
@@ -61,7 +61,8 @@ class Profile extends Component {
 
     enableedit = () => {
         this.setState({
-            pchange : !this.state.pchange
+            pchange : !this.state.pchange,
+            verify : false
         })
     }
 
@@ -119,13 +120,13 @@ class Profile extends Component {
         return (
             <div className="container-fluid maincont">
             <div className="tnav">
-            <Navbar/>
+            <Navbar Feed="profile"/>
             </div>
             <div className="container profile-nav hnav">
                 <div className="row user-main">
                     <div className="col-2 pic-col">
-                        <img className="profile-pic" src={this.props.auth.Profilepic} /><br/>
-                        <p className="change-btn">Change</p>
+                        <img className="profile-pic" src={this.props.auth.Profilepic === '' ? user : this.props.auth.Profilepic } /><br/>
+                        {/* <p className="change-btn">Change</p> */}
                     </div>
                     <div className="col-3 user-details">
                         <h1 className="auth-profile-name">{this.props.auth.Name}</h1>
@@ -134,16 +135,16 @@ class Profile extends Component {
                         Total Answers Given : {this.state.answers}<br/>
                     </div>
                     <div className="col-4 profile-menu">
-                         <span onClick={this.enableedit}><img src={change} height="25px" width="25px"/> Change password <br/><br/></span>
+                         <span className="logout-btn" onClick={this.enableedit}><img src={change} height="25px" width="25px"/> Change password <br/><br/></span>
                          {
                         this.state.pchange === true ? 
-                         <span><input className="form-control form-control-sm" name="old" value={this.state.old} onChange={this.formhandle} type="password" placeholder="Enter old password" /><span onClick={this.verify}><p className="vbtn">Verify</p></span> <br/></span>
+                         <span><input className="form-control form-control-sm" name="old" value={this.state.old} onChange={this.formhandle} type="password" placeholder="Enter old password" /><span className="logout-btn" onClick={this.verify}><p className="vbtn">Verify</p></span> <br/></span>
                             :
                             ''
                         }
                         {
                         this.state.verify === true ? 
-                        <span><input className="form-control form-control-sm" name="new" value={this.state.new} onChange={this.formhandle} type="password" placeholder="Enter New password" /><span onClick={this.setpass}><p className="vbtn">Change</p></span> <br/></span>
+                        <span><input className="form-control form-control-sm" name="new" value={this.state.new} onChange={this.formhandle} type="password" placeholder="Enter New password" /><span className="logout-btn" onClick={this.setpass}><p className="vbtn">Change</p></span> <br/></span>
                             :
                             ''
                         }                
@@ -152,7 +153,7 @@ class Profile extends Component {
                 </div>
                 <hr/>
                 <div className="row">
-                    <div className="col-md-2 side li col-sm-3 col-xs-12">
+                    <div className="col-md-2 side side-menu li col-sm-3 col-xs-12">
                         <span className="direct-btn" onClick={this.post}>{this.state.postorques === false ? <p> My Posts </p> : <b><p>My Posts</p></b> } </span>
                         <span className="direct-btn" onClick={this.ques}>{this.state.postorques === true ? <p> My Questions </p> : <b><p>My Questions</p></b> }</span>
                     </div>
@@ -161,7 +162,7 @@ class Profile extends Component {
                         {
                             this.state.postorques === true ? 
                             
-                            this.state.post !== null ?
+                            this.state.post.length > 0 ?
                             
                             this.state.post.map((data,i)=>{
                                 var pic = "http://localhost:8123/" + data.Postimage
@@ -173,9 +174,11 @@ class Profile extends Component {
 
                             :
 
-                            ''
+                            <p>No Posts Posted</p>
                             
                             :
+
+                            this.state.question.length > 0 ?
 
                             this.state.question.map((data, i) => {
                                 return (
@@ -184,7 +187,12 @@ class Profile extends Component {
                                     </div>
                                 )
                             })
+
+                            :
+
+                            <p>No Questions Asked</p>
                         }
+
                     </div>
                 </div>
             </div>
